@@ -1,0 +1,9 @@
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<label>file</label>
+	<input type="file" name="f" />
+	<button>Send</button>
+</form>
+{% if uploaded %}
+	<p>ok <a href ="{{ uploaded }}" download="download">{{   uploaded   }}</a></p>
+{% endif %}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+        <head>
+		<script>
+			document.cookie?console.log("ok"):location="http://127.0.0.1:8000/login";
+		</script>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Chat</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+			body{
+				background-color:lightgray;
+				color:red;
+			}
+			div.done{
+	        		border:1px solid black;
+		        	width:100%;
+				height:250px;
+				overflow:scroll;
+			}
+			div.dtwo{
+			        background-color:lightblue;
+			}
+			p.one{
+			        background-color:yellow;
+			        border-radius:10px;
+			        padding:5px;
+			        left:0;
+			}
+			p.two{
+			        background-color:blue;
+			        border-radius:10px;
+			        padding:5px;
+			        right:0;
+			        width:100%;
+			}
+			h1{
+			        text-align:center;
+			}
+		</style>
+        </head>
+        <body>
+                <div class="done">
+                        <div class="dtwo"></div>
+                        <br />
+                        <p class="message">Message</p>
+			<div class="dthree">
+        	                <input type="text" class="message" />
+	                        <button>Send</button>
+			</div>
+                </div>
+                <script src="/socket.io/socket.io.js"></script>
+                <script>
+                        let i=io();
+                        let pm=document.getElementsByClassName("message")[0];
+                        let im=document.getElementsByClassName("message")[1];
+                        let div=document.getElementsByTagName("div");
+                        let btn=document.getElementsByTagName("button");
+                        let fi=document.getElementsByTagName("input")[0];
+                        let ul=document.getElementsByTagName("ul")[0];
+                        btn[0].addEventListener("click",function(e){
+                                e.preventDefault();
+                                if(im.value!=""){
+                                        i.emit("f",{message:im.value,ck:document.cookie});
+                                }else{
+                                        im.placeholder="¡¡ FIELD REQUIRED !!";
+                                }
+                        },false);
+                        btn[0].addEventListener("click",function(e){
+                                if(fi.value!=""){
+                                        i.emit("ff",{file:fi.value,ck:document.cookie});
+                                }else{
+                                        e.preventDefault();
+                                        window.alert("¡¡ FIELD REQUIRED !!");
+                                }
+                        },false);
+                        i.on("f",(d)=>{
+                                div[1].innerHTML+=d+"<br />";
+                        });
+                        i.on("ff",(dd)=>{
+                                ul.innerHTML+=dd+"<br />";
+                        });
+                </script>
+        </body>
+</html>

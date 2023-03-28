@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Log in</title>
+	</head>
+	<body>
+		<form action="/loginn/" method="post">{% csrf_token %}
+			<label>Username:</label>
+			<input type="text" name="username" />
+			<br />
+			<label>Key:</label>
+			<input type="text" name="key" />
+			<br />
+			<button>Send</button>
+		</form>
+		<p>Don't have an account <a href="/signup/">Click here</a></p>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Chat</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+			body{
+				color:red;
+				background-color:lightgray;
+			}
+			h1{
+				color:red;
+				text-align:center;
+			}
+			div.do{
+				border:1px solid black;
+				margin:20px;
+				padding:20px;
+			}
+			ul{
+				list-style-type:none;
+			}
+			iframe{
+				border:none;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Chat</h1>
+		</header>
+		<p><a href="http://127.0.0.1:8000/">Go to index</a><p>
+                <p><a href="http://127.0.0.1:8000/config">Go to configuration</a></p>
+                <p><a href="http://127.0.0.1:8000/mailer">Go to Mailer Utility</a></p>
+		<div class="do">
+			<h1>List of files to upload</h1>
+			<ul>
+				{% if uploaded %}
+				<li><a href="{{ uploaded }}" download="download">{{ up }}</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		<iframe src="http://localhost:3000/chat" width="100%" height="300px"></iframe>
+		<form method="post" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Upload a file</legend>
+				{% csrf_token %}
+				<input type="file" class="inf" name="f" />
+				<button class="btnf">Send</button>
+			</fieldset>
+		</form>
+		<script>
+			let btn=document.getElementsByClassName("btnf")[0];
+			let inf=document.getElementsByClassName("inf")[0];
+			btn.addEventListener("click",function(e){
+				if(inf.value!=""){
+					console.log("ok");
+				}else{
+					e.preventDefault();
+					alert("¡¡ FIELD REQUIRED !!");
+				}
+			})
+		</script>
+	</body>
+</html>

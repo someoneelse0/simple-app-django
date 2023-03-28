@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Mailer Utility</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header>
+			<h1>Mailer Utility</h1>
+		</header>
+		<p><a href="/">Go to Index</a></p>
+		<p><a href="/config">Go to Config</a></p>
+		<p><a href="/chat">Go to Chat</a></p>
+		<form method="post" action="/m/">
+			<fieldset>
+				{% csrf_token %}
+				<legend>Mailer Utility</legend>
+				<label>From:</label>
+				<input type="mail" name="fr" />
+				<br />
+				<br />
+				<label>To:</label>
+				<input type="mail" name="to" />
+				<br />
+				<br />
+				<label>Subject:</label>
+				<input type="text" name="su" />
+				<br />
+				<br />
+				<label>Message:</label>
+				<input type="text" name="me" />
+				<button>Send</button>
+			</fieldset>
+		</form>
+	</body>
+</html>
